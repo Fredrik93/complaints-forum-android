@@ -35,12 +35,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickNewActivity (View view) {
-        TextView mCamelView = findViewById(R.id.camelTextView);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.server_url) + "/api/rooms";
+        JSONObject postParams = new JSONObject();
+        try{
+            postParams.put("name", "london");
+        } catch (Exception e) {
+            System.out.println("hello");
+        }
 
-        // Starts a new activity, providing the text from my HTTP text field as an input
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra(HTTP_PARAM, mCamelView.getText().toString());
-        startActivity(intent);
+        JsonObjectRequest jsonObjectReq = new JsonObjectRequest(Request.Method.POST, url, postParams,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        queue.add(jsonObjectReq);
+                //TextView mCamelView = findViewById(R.id.camelTextView);
+                // Starts a new activity, providing the text from my HTTP text field as an input
+                //Intent intent = new Intent(this, SecondActivity.class);
+                //intent.putExtra(HTTP_PARAM, mCamelView.getText().toString());
+                //startActivity(intent);
     }
 
     public void onClickGetCamels (View view) {
@@ -77,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
                             for (Post posti : currentRoom.posts) {
                                 roomString.append("   "+ posti.text + " " + posti.userId + "\n");
                             }
-
-
                         }
 
                         myRoomView.setText(roomString.toString());
