@@ -1,6 +1,5 @@
 package se.chalmers.cse.dit341.group00;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,13 +11,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import se.chalmers.cse.dit341.group00.model.Camel;
 import se.chalmers.cse.dit341.group00.model.Post;
 import se.chalmers.cse.dit341.group00.model.Room;
 
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickGetCamels (View view) {
         // Get the text view in which we will show the result.
-        final TextView myRoomView = findViewById(R.id.camelTextView);
+        final TextView myRoomView = findViewById(R.id.roomTextView);
 
         String url = getString(R.string.server_url) + "/api/rooms";
 
@@ -107,11 +106,34 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        myRoomView.setText("Error! " + error.toString());
+                        myRoomView.setText("There are no rooms");
                     }
                 });
 
         // The request queue makes sure that HTTP requests are processed in the right order.
         queue.add(jsonObjectRequest);
+    }
+
+    public void onClickDeleteRoom(View view) {
+        final TextView myRoomView = findViewById(R.id.roomTextView);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.server_url) + "/api/rooms";
+        StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                        myRoomView.setText("Rooms deleted! ");
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        queue.add(deleteRequest);
     }
 }

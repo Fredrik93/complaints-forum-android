@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">DIT341 Template</string>
-    <string name="btn_new_activity">New Activity</string>
-    <string name="btn_get_http">Get Camels</string>
+    <string name="app_name">Your problem</string>
+    <string name="btn_new_activity">Create Room London</string>
+    <string name="btn_get_http">Get Rooms</string>
+    <string name="btn_delete_room">Delete Room</string>
+    <string name="textView_text">Here will be your output</string>
 </resources>
