@@ -19,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import se.chalmers.cse.dit341.group00.model.Camel;
+import se.chalmers.cse.dit341.group00.model.Post;
+import se.chalmers.cse.dit341.group00.model.Room;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickGetCamels (View view) {
         // Get the text view in which we will show the result.
-        final TextView mCamelView = findViewById(R.id.camelTextView);
+        final TextView myRoomView = findViewById(R.id.camelTextView);
 
-        String url = getString(R.string.server_url) + "/api/camels";
+        String url = getString(R.string.server_url) + "/api/rooms";
 
         // This uses Volley (Threading and a request queue is automatically handled in the background)
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -60,28 +62,32 @@ public class MainActivity extends AppCompatActivity {
                         String dataArray = null;
 
                         try {
-                            dataArray = response.getString("camels");
+                            dataArray = response.getString("rooms");
                         } catch (JSONException e) {
                             Log.e(this.getClass().toString(), e.getMessage());
                         }
 
-                        StringBuilder camelString = new StringBuilder();
-                        camelString.append("This is the list of my camels: \n");
+                        StringBuilder roomString = new StringBuilder();
+                        roomString.append("This is the list of my rooms: \n");
 
-                        Camel[] camels = gson.fromJson(dataArray, Camel[].class);
+                        Room[] rooms = gson.fromJson(dataArray, Room[].class);
 
-                        for (Camel current : camels) {
-                            camelString.append("Camel is " + current.color + " at "
-                                    + current.position + "\n");
+                        for (Room currentRoom : rooms) {
+                            roomString.append("Room " + currentRoom.name + "\n");
+                            for (Post posti : currentRoom.posts) {
+                                roomString.append("   "+ posti.text + " " + posti.userId + "\n");
+                            }
+
+
                         }
 
-                        mCamelView.setText(camelString.toString());
+                        myRoomView.setText(roomString.toString());
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        mCamelView.setText("Error! " + error.toString());
+                        myRoomView.setText("Error! " + error.toString());
                     }
                 });
 
