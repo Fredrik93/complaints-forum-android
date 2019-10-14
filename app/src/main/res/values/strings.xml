@@ -5,5 +5,6 @@
     <string name="btn_get_http">Get Rooms</string>
     <string name="btn_delete_room">Delete All Rooms</string>
     <string name="textView_text">Here will be your output</string>
+    <string name="btn_new_room">new Room</string>
 
 </resources>

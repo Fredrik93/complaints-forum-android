@@ -1,11 +1,8 @@
 package se.chalmers.cse.dit341.group00;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -20,14 +17,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import se.chalmers.cse.dit341.group00.model.Post;
-import se.chalmers.cse.dit341.group00.model.Room;
 
-public class SecondActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_post);
         final TextView myPostView = findViewById(R.id.postTextView);
 
         String url = getString(R.string.server_url) + "/api/posts";

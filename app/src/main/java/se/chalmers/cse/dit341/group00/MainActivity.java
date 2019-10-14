@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showPosts(View view){
       //  ScrollView mPostView = findViewById(R.id.postView);
-        Intent intent = new Intent (this, SecondActivity.class);
+        Intent intent = new Intent (this, PostActivity.class);
         startActivity(intent);
 
 
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonObjectReq);
                 //TextView mCamelView = findViewById(R.id.camelTextView);
                 // Starts a new activity, providing the text from my HTTP text field as an input
-                //Intent intent = new Intent(this, SecondActivity.class);
+                //Intent intent = new Intent(this, PostActivity.class);
                 //intent.putExtra(HTTP_PARAM, mCamelView.getText().toString());
                 //startActivity(intent);
     }
