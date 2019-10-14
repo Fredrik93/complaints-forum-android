@@ -5,6 +5,7 @@ public class Post {
     public String text;
     public String roomId;
     public String userId;
+
     Post() {
 
     }

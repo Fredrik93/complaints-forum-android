@@ -1,9 +1,11 @@
 package se.chalmers.cse.dit341.group00;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -31,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void showPosts(View view){
+      //  ScrollView mPostView = findViewById(R.id.postView);
+        Intent intent = new Intent (this, SecondActivity.class);
+        startActivity(intent);
+
+
+
+
     }
 
     public void onClickNewActivity (View view) {
