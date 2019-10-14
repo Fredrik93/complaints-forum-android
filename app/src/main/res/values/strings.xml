@@ -2,6 +2,6 @@
     <string name="app_name">Your problem</string>
     <string name="btn_new_activity">Create Room London</string>
     <string name="btn_get_http">Get Rooms</string>
-    <string name="btn_delete_room">Delete Room</string>
+    <string name="btn_delete_room">Delete All Rooms</string>
     <string name="textView_text">Here will be your output</string>
 </resources>

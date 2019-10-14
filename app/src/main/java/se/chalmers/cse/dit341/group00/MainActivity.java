@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickNewActivity (View view) {
+    public void onClickNewRoom (View view) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = getString(R.string.server_url) + "/api/rooms";
         JSONObject postParams = new JSONObject();
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(intent);
     }
 
-    public void onClickGetCamels (View view) {
+    public void onClickGetRooms (View view) {
         // Get the text view in which we will show the result.
         final TextView myRoomView = findViewById(R.id.roomTextView);
 
