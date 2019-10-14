@@ -28,13 +28,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
-
-    }
-
-    public void onClickGetCamels (View view) {
-        // Get the text view in which we will show the result.
-        final TextView myPostView = findViewById(R.id.roomTextView);
+        final TextView myPostView = findViewById(R.id.postTextView);
 
         String url = getString(R.string.server_url) + "/api/posts";
 
@@ -57,12 +51,12 @@ public class SecondActivity extends AppCompatActivity {
                         }
 
                         StringBuilder postString = new StringBuilder();
-                        postString.append("This is the list of my posts: \n");
+                        postString.append("Browse Posts: \n");
 
                         Post[] posts = gson.fromJson(dataArray, Post[].class);
 
                         for (Post currentPost : posts) {
-                            postString.append("Title " + currentPost.title + "\n" + currentPost);
+                            postString.append("Title " + currentPost.title + "\n" + currentPost.text);
 
                         }
 
@@ -80,6 +74,4 @@ public class SecondActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-
-
-}
+    }
