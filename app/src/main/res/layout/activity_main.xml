@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+     android:background="@color/teal">
 
     <TextView
         android:id="@+id/roomTextView"
@@ -19,64 +20,67 @@
         android:text="@string/textView_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getCamelsBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/getRoomsBtn"
+        app:layout_constraintVertical_bias="0.856" />
 
     <Button
-        android:id="@+id/newActivityBtn"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/colorPrimaryDark"
+
+        android:id="@+id/newRoomBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:onClick="onClickNewRoom"
-        android:text="@string/btn_new_activity"
+        android:text="@string/btn_new_room"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteRoomBtn" />
 
     <Button
-        android:id="@+id/getCamelsBtn"
+
+        android:id="@+id/getRoomsBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="@color/white"
         android:onClick="onClickGetRooms"
         android:text="@string/btn_get_http"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newActivityBtn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:backgroundTint="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/deleteRoomBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:onClick="onClickDeleteRoom"
         android:text="@string/btn_delete_room"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newActivityBtn"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getRoomsBtn" />
 
     <Button
+
+        android:backgroundTint="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/post_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:onClick="showPosts"
         android:text="@string/post_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/newRoomBtn"
+        app:layout_constraintVertical_bias="0.051" />
+
 
 
 </android.support.constraint.ConstraintLayout>
