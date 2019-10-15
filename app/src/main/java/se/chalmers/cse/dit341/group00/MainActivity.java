@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         try{
             postParams.put("name", "london");
         } catch (Exception e) {
-            System.out.println("hello");
+            System.out.println(e.getStackTrace());
         }
 
         JsonObjectRequest jsonObjectReq = new JsonObjectRequest(Request.Method.POST, url, postParams,
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         // GSON allows to parse a JSON string/JSONObject directly into a user-defined class
                         Gson gson = new Gson();
-
                         String dataArray = null;
 
                         try {
@@ -103,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                         roomString.append("This is the list of my rooms: \n");
 
                         Room[] rooms = gson.fromJson(dataArray, Room[].class);
-
                         for (Room currentRoom : rooms) {
                             roomString.append("Room " + currentRoom.name + "\n");
                             for (Post posti : currentRoom.posts) {
@@ -111,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
 
-                        myRoomView.setText(roomString.toString());
+                        myRoomView.setText(dataArray.toString());
                     }
                 }, new Response.ErrorListener() {
 
