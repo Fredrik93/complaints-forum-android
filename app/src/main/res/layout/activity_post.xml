@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:text="Enter the post's name that you want to delete"
-            tools:inputType="text" />
+          />
 
         <EditText
             android:id="@+id/nameInput"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Name of Post"
-            android:inputType="textPersonName"
+            android:inputType="text"
             tools:layout_editor_absoluteX="69dp"
             tools:layout_editor_absoluteY="429dp" />
 
