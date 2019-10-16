@@ -3,6 +3,9 @@ package se.chalmers.cse.dit341.group00;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -21,6 +24,13 @@ import se.chalmers.cse.dit341.group00.model.Room;
 
 public class RoomActivity extends AppCompatActivity {
 
+    String text;
+
+    Button submitButton;
+
+    EditText roomName;
+
+    Room[] rooms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +38,7 @@ public class RoomActivity extends AppCompatActivity {
 
         // Get the text view in which we will show the result.
         final TextView myRoomView = findViewById(R.id.roomTextView);
+
 
         String url = getString(R.string.server_url) + "/api/rooms";
 
@@ -51,7 +62,7 @@ public class RoomActivity extends AppCompatActivity {
                         StringBuilder roomString = new StringBuilder();
                         roomString.append("This is the list of my rooms: \n");
 
-                        Room[] rooms = gson.fromJson(dataArray, Room[].class);
+                        rooms = gson.fromJson(dataArray, Room[].class);
                         for (Room currentRoom : rooms) {
                             roomString.append("Room " + currentRoom.name + "\n");
                             for (Post posti : currentRoom.posts) {
@@ -68,8 +79,23 @@ public class RoomActivity extends AppCompatActivity {
                         myRoomView.setText("There are no rooms");
                     }
                 });
-
         // The request queue makes sure that HTTP requests are processed in the right order.
         queue.add(jsonObjectRequest);
+
+        roomName = findViewById(R.id.RoomNameInput);
+        submitButton = findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text = roomName.getText().toString();
+                for(Room currentRoom : rooms) {
+                    if(currentRoom.name.equals(text)) {
+                        String roomId = currentRoom._id;
+                        //KEEP WORKING HERE
+                    }
+                }
+            }
+        });
+
     }
 }
