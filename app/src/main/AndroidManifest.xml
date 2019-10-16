@@ -14,15 +14,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="se.chalmers.cse.dit341.group00.MainActivity">
+        <activity
+            android:name=".RoomActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.chalmers.cse.dit341.group00.MainActivity" />
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="se.chalmers.cse.dit341.group00.PostActivity"
-            android:parentActivityName="se.chalmers.cse.dit341.group00.MainActivity">
+        <activity
+            android:name=".PostActivity"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="se.chalmers.cse.dit341.group00.MainActivity" />

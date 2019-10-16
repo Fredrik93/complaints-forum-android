@@ -81,8 +81,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showPosts(View view){
-      //  ScrollView mPostView = findViewById(R.id.postView);
         Intent intent = new Intent (this, PostActivity.class);
+        startActivity(intent);
+    }
+
+    public void showRooms(View view){
+        Intent intent = new Intent (this, RoomActivity.class);
         startActivity(intent);
     }
 
