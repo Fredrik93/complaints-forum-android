@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
 
-                        myRoomView.setText(dataArray.toString());
+                        myRoomView.setText(roomString.toString());
                     }
                 }, new Response.ErrorListener() {
 
