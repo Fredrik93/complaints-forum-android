@@ -64,9 +64,8 @@ public class PostActivity extends AppCompatActivity {
                         postString.append("Browse Posts: \n");
 
                         posts = gson.fromJson(dataArray, Post[].class);
-                        //posts[0].
                         for (Post currentPost : posts) {
-                            postString.append("Title " + currentPost.title + "\n" + currentPost.text + "\n" + " id is " + currentPost._id + "\n");
+                            postString.append("Title " + currentPost.title + "\n" + currentPost.text + "\n");
 
                         }
 
@@ -89,13 +88,13 @@ public class PostActivity extends AppCompatActivity {
                 text = postName.getText().toString();
                 for (Post currentPost : posts) {
                     if(currentPost.title.equals(text)) {
-                        String deleteUrl = getString(R.string.server_url) + "/api/posts" + "/" + currentPost._id;
+                        String deleteUrl = getString(R.string.server_url) + "/api/posts/" + currentPost._id;
                         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, deleteUrl,
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
                                         Log.d("Response", response);
-                                        myPostView.setText("Room deleted! ");
+                                        myPostView.setText("Post deleted! ");
 
                                     }
                                 },
@@ -107,25 +106,6 @@ public class PostActivity extends AppCompatActivity {
                                 }
                         );
                         queue.add(deleteRequest);
-                       /* String deleteInRoomUrl = getString(R.string.server_url) + "/api/rooms/" + currentPost.roomId + "posts/" + currentPost._id;
-                        StringRequest deleteRequestInRoom = new StringRequest(Request.Method.DELETE, deleteInRoomUrl,
-                                new Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
-                                        Log.d("Response", response);
-                                        myPostView.setText("Room deleted! ");
-
-                                    }
-                                },
-                                new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-
-                                    }
-                                }
-                        );
-                        queue.add(deleteRequestInRoom);
-                        */
                     }
                 }
             }
