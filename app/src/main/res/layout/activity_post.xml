@@ -17,50 +17,101 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <TextView
-            android:id="@+id/postTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/textView_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.175" />
-
-        <TextView
-            android:id="@+id/deletePostTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="Enter the post's name that you want to delete"
-          />
-
-        <EditText
-            android:id="@+id/nameInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Name of Post"
-            android:inputType="text"
-            tools:layout_editor_absoluteX="69dp"
-            tools:layout_editor_absoluteY="429dp" />
-
-        <Button
-            android:id="@+id/submitButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit" />
-
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.256"
+        app:layout_constraintStart_toEndOf="@+id/nameInput"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
 
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="171dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginRight="188dp"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:hint="Name of Post"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletePostTextView" />
+
+    <TextView
+        android:id="@+id/deletePostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginRight="234dp"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:text="Enter the post's name that you want to delete"
+        app:layout_constraintBottom_toTopOf="@+id/nameInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postTextView" />
+
+    <TextView
+        android:id="@+id/postTextView"
+        android:layout_width="341dp"
+        android:layout_height="349dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/textView_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.233" />
+
+    <Button
+        android:id="@+id/putPostButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginRight="87dp"
+        android:layout_marginBottom="60dp"
+        android:text="Change Title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/putTextInput"
+        app:layout_constraintTop_toBottomOf="@+id/submitButton" />
+
+    <EditText
+        android:id="@+id/putTextInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginBottom="60dp"
+        android:ems="10"
+        android:hint="enter title"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/putPostButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
 
 </android.support.constraint.ConstraintLayout>

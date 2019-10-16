@@ -25,11 +25,11 @@ import se.chalmers.cse.dit341.group00.model.Post;
 public class PostActivity extends AppCompatActivity {
 
     String text;
-
     Button submitButton;
-
     EditText postName;
     Post[] posts;
+    EditText putTextInput;
+    Button putPostButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +110,43 @@ public class PostActivity extends AppCompatActivity {
                 }
             }
         });
+        putTextInput = (EditText) findViewById(R.id.putTextInput);
+        putPostButton = (Button) findViewById(R.id.putPostButton);
+
+        putPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text = putTextInput.getText().toString();
+                for(Post currentPost : posts){
+                    if(currentPost.title.equals(text)){
+                        String putURL = getString(R.string.server_url) + "/api/posts/" + currentPost._id ;
+                        StringRequest putRequest = new StringRequest(Request.Method.PATCH, putURL,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("Response", response);
+                                        myPostView.setText("Post changed!");
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+
+
+                                    }
+                                }
+                                );
+                        queue.add(putRequest);
+
+                    }
+                }
+            }
+        });
+
+
+
+
+
         // The request queue makes sure that HTTP requests are processed in the right order.
         queue.add(jsonObjectRequest);
     }
