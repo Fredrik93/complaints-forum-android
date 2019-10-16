@@ -1,10 +1,8 @@
 package se.chalmers.cse.dit341.group00;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -12,7 +10,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
@@ -22,60 +19,13 @@ import org.json.JSONObject;
 import se.chalmers.cse.dit341.group00.model.Post;
 import se.chalmers.cse.dit341.group00.model.Room;
 
-
-public class MainActivity extends AppCompatActivity {
-
-    // Field for parameter name
-    public static final String HTTP_PARAM = "httpResponse";
+public class RoomActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+        setContentView(R.layout.activity_room);
 
-    public void showPosts(View view){
-        Intent intent = new Intent (this, PostActivity.class);
-        startActivity(intent);
-    }
-
-    public void showRooms(View view){
-        Intent intent = new Intent (this, RoomActivity.class);
-        startActivity(intent);
-    }
-
-    public void onClickNewRoom (View view) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getString(R.string.server_url) + "/api/rooms";
-        JSONObject postParams = new JSONObject();
-        try{
-            postParams.put("name", "london");
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-        }
-
-        JsonObjectRequest jsonObjectReq = new JsonObjectRequest(Request.Method.POST, url, postParams,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-        queue.add(jsonObjectReq);
-                //TextView mCamelView = findViewById(R.id.camelTextView);
-                // Starts a new activity, providing the text from my HTTP text field as an input
-                //Intent intent = new Intent(this, PostActivity.class);
-                //intent.putExtra(HTTP_PARAM, mCamelView.getText().toString());
-                //startActivity(intent);
-    }
-
-    public void onClickGetRooms (View view) {
         // Get the text view in which we will show the result.
         final TextView myRoomView = findViewById(R.id.roomTextView);
 
@@ -121,28 +71,5 @@ public class MainActivity extends AppCompatActivity {
 
         // The request queue makes sure that HTTP requests are processed in the right order.
         queue.add(jsonObjectRequest);
-    }
-
-    public void onClickDeleteRoom(View view) {
-        final TextView myRoomView = findViewById(R.id.roomTextView);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getString(R.string.server_url) + "/api/rooms";
-        StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("Response", response);
-                        myRoomView.setText("Rooms deleted! ");
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }
-        );
-        queue.add(deleteRequest);
     }
 }

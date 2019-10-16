@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:backgroundTint="@color/white"
-        android:onClick="onClickGetRooms"
+        android:onClick="showRooms"
         android:text="@string/btn_get_http"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
