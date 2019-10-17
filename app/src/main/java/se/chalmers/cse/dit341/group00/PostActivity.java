@@ -110,7 +110,7 @@ public class PostActivity extends AppCompatActivity {
                 }
             }
         });
-        putTextInput = (EditText) findViewById(R.id.putTextInput);
+        putTextInput = (EditText) findViewById(R.id.nameInput);
         putPostButton = (Button) findViewById(R.id.putPostButton);
 
         putPostButton.setOnClickListener(new View.OnClickListener() {
