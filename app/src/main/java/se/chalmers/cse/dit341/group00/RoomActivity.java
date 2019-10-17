@@ -74,7 +74,7 @@ public class RoomActivity extends AppCompatActivity {
                         for (Room currentRoom : rooms) {
                             roomString.append("Room " + currentRoom.name + "\n");
                             for (Post posti : currentRoom.posts) {
-                                roomString.append("   "+ posti.text + " " + posti.userId + "\n");
+                                roomString.append("   Post title: " + posti.title + "\n" + "   Post text: " + posti.text + "\n" + "========================" + "\n");
                             }
                         }
 
