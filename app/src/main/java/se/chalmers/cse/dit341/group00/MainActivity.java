@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void ShowUser(View view){
+        Intent intent = new Intent (this, UserActivity.class);
+        startActivity(intent);
+    }
     public void showPosts(View view){
         Intent intent = new Intent (this, PostActivity.class);
         startActivity(intent);
