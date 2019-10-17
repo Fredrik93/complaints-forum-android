@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView mRoomView = findViewById(R.id.roomTextView);
+        final TextView myRoomView = findViewById(R.id.roomTextView);
 
 
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                              mRoomView.setText("Room " + text + " Created ! ");
+                                myRoomView.setText("Room " + text + " Created ! ");
                             }
                         },
                         new Response.ErrorListener() {
@@ -94,36 +94,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickNewRoom (View view) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getString(R.string.server_url) + "/api/rooms";
-        JSONObject postParams = new JSONObject();
-        try{
-            postParams.put("name", "london");
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-        }
-
-        JsonObjectRequest jsonObjectReq = new JsonObjectRequest(Request.Method.POST, url, postParams,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-        queue.add(jsonObjectReq);
-                //TextView mCamelView = findViewById(R.id.camelTextView);
-                // Starts a new activity, providing the text from my HTTP text field as an input
-                //Intent intent = new Intent(this, PostActivity.class);
-                //intent.putExtra(HTTP_PARAM, mCamelView.getText().toString());
-                //startActivity(intent);
-    }
 
     public void onClickGetRooms (View view) {
         // Get the text view in which we will show the result.
