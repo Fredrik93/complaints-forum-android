@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".UserActivity">
 
+
+    <TextView
+        android:id="@+id/userView"
+        android:layout_width="304dp"
+        android:layout_height="232dp"
+        android:text="@string/textView_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18" />
 </android.support.constraint.ConstraintLayout>
