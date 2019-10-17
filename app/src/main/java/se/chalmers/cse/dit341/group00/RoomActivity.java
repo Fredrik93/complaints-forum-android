@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,10 +34,11 @@ public class RoomActivity extends AppCompatActivity {
     String text;
 
     Button submitButton;
-
+    Button putButton;
     EditText roomName;
 
     Room[] rooms;
+    Room [] chosenRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +91,8 @@ public class RoomActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
 
         roomName = findViewById(R.id.RoomNameInput);
-        submitButton = findViewById(R.id.putButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        putButton = findViewById(R.id.putButton);
+        putButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 text = roomName.getText().toString();
@@ -128,7 +130,56 @@ public class RoomActivity extends AppCompatActivity {
                 }
             }
         });
+        submitButton = findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text = roomName.getText().toString();
+                for (Room currentRoom : rooms) {
+                    if (currentRoom.name.equals(text)) {
+                        String roomUrl = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
+                        System.out.println(roomUrl);
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                                (Request.Method.GET, roomUrl, null, new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        // GSON allows to parse a JSON string/JSONObject directly into a user-defined class
+                                        Gson gson = new Gson();
+                                        String dataArray = null;
 
+                                        try {
+                                            dataArray = response.getString("posts");
+                                            System.out.println(dataArray);
+                                        } catch (JSONException e) {
+                                            Log.e(this.getClass().toString(), e.getMessage());
+                                        }
+
+                                        StringBuilder roomString = new StringBuilder();
+                                        roomString.append("These are the posts in the room: " + currentRoom.name + "\n");
+                                        Post [] posts = gson.fromJson(dataArray, Post[].class);
+                                        //rooms = gson.fromJson(dataArray, Room[].class);
+                                        for (Post currentPost : posts) {
+                                            roomString.append("Title: " + currentPost.title + "\n" + "Text: " + currentPost.text + "\n" + "========================" + "\n");
+                                        }
+
+                                        myRoomView.setText(roomString.toString());
+                                    }
+                                }, new Response.ErrorListener() {
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        myRoomView.setText("There are no rooms");
+                                    }
+                                });
+                        queue.add(jsonObjectRequest);
+                    } else {
+                        myRoomView.setText("This room does not exist");
+                    }
+
+                }
+            }
+
+        });
     }
 }
 
