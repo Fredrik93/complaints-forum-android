@@ -119,8 +119,8 @@ public class PostActivity extends AppCompatActivity {
                 text = putTextInput.getText().toString();
                 for(Post currentPost : posts){
                     if(currentPost.title.equals(text)){
-                        String putURL = getString(R.string.server_url) + "/api/posts/" + currentPost._id ;
-                        StringRequest putRequest = new StringRequest(Request.Method.PATCH, putURL,
+                        String patchURL = getString(R.string.server_url) + "/api/posts/" + currentPost._id ;
+                        StringRequest patchRequest = new StringRequest(Request.Method.PATCH, patchURL,
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
@@ -136,7 +136,7 @@ public class PostActivity extends AppCompatActivity {
                                     }
                                 }
                                 );
-                        queue.add(putRequest);
+                        queue.add(patchRequest);
 
                     }
                 }

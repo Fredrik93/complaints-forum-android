@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,9 +16,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import se.chalmers.cse.dit341.group00.model.Post;
 import se.chalmers.cse.dit341.group00.model.Room;
@@ -83,15 +89,41 @@ public class RoomActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
 
         roomName = findViewById(R.id.RoomNameInput);
-        submitButton = findViewById(R.id.submitButton);
+        submitButton = findViewById(R.id.putButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 text = roomName.getText().toString();
                 for(Room currentRoom : rooms) {
                     if(currentRoom.name.equals(text)) {
-                        String roomId = currentRoom._id;
-                        //KEEP WORKING HERE
+                        String putURL = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
+                        JSONArray array = new JSONArray();
+                        JSONObject roomJSON = new JSONObject();
+                        try {
+                            roomJSON.put("name", currentRoom.name);
+                            roomJSON.put("users", array);
+                            roomJSON.put("posts", array);
+
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        JsonObjectRequest putRequest = new JsonObjectRequest (Request.Method.PUT, putURL, roomJSON,
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                Log.d("Response", response.toString());
+                                                myRoomView.setText("Room reset");
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+
+                                            }
+                                        }
+                        );
+                    queue.add(putRequest);
                     }
                 }
             }
@@ -99,3 +131,9 @@ public class RoomActivity extends AppCompatActivity {
 
     }
 }
+
+ /*public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content - Type", "application/json; charset=utf-8");
+                return headers;
+            }*/
