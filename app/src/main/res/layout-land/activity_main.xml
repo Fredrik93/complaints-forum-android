@@ -9,53 +9,63 @@
 
     <TextView
         android:id="@+id/roomTextView"
-        android:layout_width="278dp"
-        android:layout_height="174dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="84dp"
         android:text="@string/textView_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_btn"
-        app:layout_constraintVertical_bias="0.138" />
-
-    <Button
-
-        android:id="@+id/getRoomsBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/white"
-        android:onClick="showRooms"
-        android:text="@string/btn_get_http"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/post_btn" />
 
     <Button
         android:id="@+id/newRoomBtn"
-        android:layout_width="0dp"
+        android:layout_width="459dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:onClick="ShowUser"
         android:text="Users"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deleteRoomBtn" />
 
     <Button
 
+        android:id="@+id/getRoomsBtn"
+        android:layout_width="459dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:onClick="showRooms"
+        android:text="@string/btn_get_http"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deleteRoomBtn"
+        android:layout_width="459dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:onClick="onClickDeleteRoom"
+        android:text="@string/btn_delete_room"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getRoomsBtn" />
+
+    <Button
+
         android:id="@+id/post_btn"
-        android:layout_width="0dp"
+        android:layout_width="459dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:onClick="showPosts"
@@ -63,23 +73,9 @@
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newRoomBtn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/deleteRoomBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:onClick="onClickDeleteRoom"
-        android:text="@string/btn_delete_room"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getRoomsBtn" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <TextView
         android:id="@+id/createRoomTextView"
@@ -87,43 +83,38 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:text="Enter the new room name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/RoomNameInput"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733"
+        app:layout_constraintVertical_bias="1.0"
         tools:inputType="text" />
 
     <EditText
         android:id="@+id/RoomNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
         android:ems="10"
         android:hint="Name of Room"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.939" />
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="352dp"
+        android:layout_width="328dp"
         android:layout_height="52dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Create New Room"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.674"
+        app:layout_constraintEnd_toStartOf="@+id/RoomNameInput"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.956" />
 
 
 </android.support.constraint.ConstraintLayout>

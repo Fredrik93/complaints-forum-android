@@ -96,45 +96,53 @@ public class RoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 text = roomName.getText().toString();
-                for(Room currentRoom : rooms) {
-                    if(currentRoom.name.equals(text)) {
-                        String putURL = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
-                        JSONArray array = new JSONArray();
-                        JSONObject roomJSON = new JSONObject();
-                        try {
-                            roomJSON.put("name", currentRoom.name);
-                            roomJSON.put("users", array);
-                            roomJSON.put("posts", array);
+                try {
+                    for(Room currentRoom : rooms) {
+                        if(currentRoom.name.equals(text)) {
+                            String putURL = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
+                            JSONArray array = new JSONArray();
+                            JSONObject roomJSON = new JSONObject();
+                            try {
+                                roomJSON.put("name", currentRoom.name);
+                                roomJSON.put("users", array);
+                                roomJSON.put("posts", array);
 
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        JsonObjectRequest putRequest = new JsonObjectRequest (Request.Method.PUT, putURL, roomJSON,
-                                        new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
-                                                Log.d("Response", response.toString());
-                                                myRoomView.setText("Room reset");
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
+                            } catch (JSONException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
 
-                                            }
+                            JsonObjectRequest putRequest = new JsonObjectRequest (Request.Method.PUT, putURL, roomJSON,
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            Log.d("Response", response.toString());
+                                            myRoomView.setText("Room reset");
                                         }
-                        );
-                    queue.add(putRequest);
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+
+                                        }
+                                    }
+                            );
+                            queue.add(putRequest);
+                        }
                     }
+                } catch (Exception e) {
+                    toastMessage("You didn't specify a room name");
+                    Log.d("RoomActivity",e.getMessage());
                 }
+
             }
         });
         submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                text = roomName.getText().toString();
+        @Override
+        public void onClick(View view) {
+            text = roomName.getText().toString();
+            try {
                 for (Room currentRoom : rooms) {
                     if (currentRoom.name.equals(text)) {
                         String roomUrl = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
@@ -175,16 +183,18 @@ public class RoomActivity extends AppCompatActivity {
                     } else {
                         myRoomView.setText("This room does not exist");
                     }
-
                 }
+            } catch (Exception e) {
+                toastMessage("You didn't specify a room name");
+                Log.d("RoomActivity",e.getMessage());
             }
 
+            }
         });
+    }
+    public void toastMessage(String message) {
+        Toast.makeText(RoomActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 }
 
- /*public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content - Type", "application/json; charset=utf-8");
-                return headers;
-            }*/
+
