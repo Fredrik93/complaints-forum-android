@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,7 +41,6 @@ public class PostActivity extends AppCompatActivity {
 
 
         String url = getString(R.string.server_url) + "/api/posts";
-
         // This uses Volley (Threading and a request queue is automatically handled in the background)
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -64,9 +64,12 @@ public class PostActivity extends AppCompatActivity {
                         postString.append("Browse Posts: \n");
 
                         posts = gson.fromJson(dataArray, Post[].class);
-                        for (Post currentPost : posts) {
-                            postString.append("Title " + currentPost.title + "\n" + currentPost.text + "\n");
-
+                        try {
+                            for (Post currentPost : posts) {
+                                postString.append("Title : " + currentPost.title + "\n" + "Text : " + currentPost.text + "\n");
+                            }
+                        }catch (Exception e){
+                            Log.d("PostActivity", "No posts in array");
                         }
 
                         myPostView.setText(postString.toString());
@@ -76,6 +79,8 @@ public class PostActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         myPostView.setText("There are no posts");
+                        Log.d("PostActivity", "No posts in array");
+
                     }
                 });
 
@@ -86,6 +91,8 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 text = postName.getText().toString();
+
+                try{
                 for (Post currentPost : posts) {
                     if(currentPost.title.equals(text)) {
                         String deleteUrl = getString(R.string.server_url) + "/api/posts/" + currentPost._id;
@@ -95,18 +102,23 @@ public class PostActivity extends AppCompatActivity {
                                     public void onResponse(String response) {
                                         Log.d("Response", response);
                                         myPostView.setText("Post deleted! ");
+                                        toastMessage("Post deleted!");
 
                                     }
                                 },
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
+                                        Log.d("PostActivity", "Couldn't delete post");
+                                        myPostView.setText("Couldnt delete post!");
 
                                     }
                                 }
                         );
                         queue.add(deleteRequest);
                     }
+                }}catch (Exception e ){
+                    Log.d("PostActivity", "Can't delete from empty array");
                 }
             }
         });
@@ -117,6 +129,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 text = putTextInput.getText().toString();
+                try{
                 for(Post currentPost : posts){
                     if(currentPost.title.equals(text)){
                         String patchURL = getString(R.string.server_url) + "/api/posts/" + currentPost._id ;
@@ -125,12 +138,15 @@ public class PostActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(String response) {
                                         Log.d("Response", response);
-                                        myPostView.setText("Post changed!");
+                                        myPostView.setText("Post Changed! ");
+                                        toastMessage("Post succesfully changed!");
                                     }
                                 },
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
+                                        Log.d("PostActivity", "Unable to PUT post");
+                                        myPostView.setText("Couldnt change post!");
 
 
                                     }
@@ -139,6 +155,8 @@ public class PostActivity extends AppCompatActivity {
                         queue.add(patchRequest);
 
                     }
+                }}catch (Exception e ){
+                    Log.d("PostActivity", "Cant change from empty array!");
                 }
             }
         });
@@ -149,6 +167,10 @@ public class PostActivity extends AppCompatActivity {
 
         // The request queue makes sure that HTTP requests are processed in the right order.
         queue.add(jsonObjectRequest);
+    }
+
+    public void toastMessage(String message) {
+        Toast.makeText(PostActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     }
