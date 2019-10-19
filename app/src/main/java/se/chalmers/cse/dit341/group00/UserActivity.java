@@ -28,10 +28,8 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-
         // Get the text view in which we will show the result.
         final TextView myUserView = findViewById(R.id.userView);
-
 
         String url = getString(R.string.server_url) + "/api/users";
 
@@ -66,6 +64,7 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         myUserView.setText("There are no users");
+                        Log.d("UserActivity", "No users in array");
                     }
                 });
         // The request queue makes sure that HTTP requests are processed in the right order.
