@@ -48,7 +48,7 @@ public class RoomActivity extends AppCompatActivity {
         final TextView myRoomView = findViewById(R.id.roomTextView);
 
 
-        String url = getString(R.string.server_url) + "/api/rooms";
+        String url = getString(R.string.heroku_url) + "/api/rooms";
 
         // This uses Volley (Threading and a request queue is automatically handled in the background)
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -101,7 +101,7 @@ public class RoomActivity extends AppCompatActivity {
                 try {
                     for(Room currentRoom : rooms) {
                         if(currentRoom.name.equals(text)) {
-                            String putURL = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
+                            String putURL = getString(R.string.heroku_url) + "/api/rooms/" + currentRoom._id;
                             JSONArray array = new JSONArray();
                             JSONObject roomJSON = new JSONObject();
                             try {
@@ -147,7 +147,7 @@ public class RoomActivity extends AppCompatActivity {
             try {
                 for (Room currentRoom : rooms) {
                     if (currentRoom.name.equals(text)) {
-                        String roomUrl = getString(R.string.server_url) + "/api/rooms/" + currentRoom._id;
+                        String roomUrl = getString(R.string.heroku_url) + "/api/rooms/" + currentRoom._id;
                         System.out.println(roomUrl);
                         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                                 (Request.Method.GET, roomUrl, null, new Response.Listener<JSONObject>() {

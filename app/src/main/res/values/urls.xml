@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="server_url">http://10.0.2.2:3000</string>
+    <string name="heroku_url">https://polar-waters-06810.herokuapp.com</string>
 </resources>
