@@ -59,6 +59,7 @@ public class RoomActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         // GSON allows to parse a JSON string/JSONObject directly into a user-defined class
                         Gson gson = new Gson();
+
                         String dataArray = null;
 
                         try {
@@ -85,6 +86,7 @@ public class RoomActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         myRoomView.setText("There are no rooms");
+                        Log.d("RoomActivity", "No Rooms in array");
                     }
                 });
         // The request queue makes sure that HTTP requests are processed in the right order.

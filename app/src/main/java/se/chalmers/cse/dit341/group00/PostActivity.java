@@ -64,13 +64,11 @@ public class PostActivity extends AppCompatActivity {
                         postString.append("Browse Posts: \n");
 
                         posts = gson.fromJson(dataArray, Post[].class);
-                        try {
+
                             for (Post currentPost : posts) {
                                 postString.append("   Post title: " + currentPost.title + "\n" + "   Post text: " + currentPost.text + "\n" + "========================" + "\n");
                             }
-                        }catch (Exception e){
-                            Log.d("PostActivity", "No posts in array");
-                        }
+
 
                         myPostView.setText(postString.toString());
                     }
