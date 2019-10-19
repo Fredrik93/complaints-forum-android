@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 text = roomName.getText().toString();
 
-                String url = getString(R.string.server_url) + "/api/rooms";
+                String url = getString(R.string.heroku_url) + "/api/rooms";
                 JSONObject postParams = new JSONObject();
                 if (text.isEmpty()) {
                     toastMessage("Enter something");
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickDeleteRoom(View view) {
         final TextView myRoomView = findViewById(R.id.roomTextView);
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = getString(R.string.server_url) + "/api/rooms";
+        String url = getString(R.string.heroku_url) + "/api/rooms";
         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>() {
                     @Override

@@ -31,7 +31,7 @@ public class UserActivity extends AppCompatActivity {
         // Get the text view in which we will show the result.
         final TextView myUserView = findViewById(R.id.userView);
 
-        String url = getString(R.string.server_url) + "/api/users";
+        String url = getString(R.string.heroku_url) + "/api/users";
 
         // This uses Volley (Threading and a request queue is automatically handled in the background)
         RequestQueue queue = Volley.newRequestQueue(this);
