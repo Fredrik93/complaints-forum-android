@@ -38,7 +38,6 @@ public class RoomActivity extends AppCompatActivity {
     EditText roomName;
 
     Room[] rooms;
-    Room [] chosenRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
