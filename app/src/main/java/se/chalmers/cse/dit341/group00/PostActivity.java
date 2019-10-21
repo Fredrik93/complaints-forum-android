@@ -40,7 +40,7 @@ public class PostActivity extends AppCompatActivity {
 
 
 
-        String url = getString(R.string.heroku_url) + "/api/posts";
+        String url = getString(R.string.server_url) + "/api/posts";
         // This uses Volley (Threading and a request queue is automatically handled in the background)
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -93,7 +93,7 @@ public class PostActivity extends AppCompatActivity {
                 try{
                 for (Post currentPost : posts) {
                     if(currentPost.title.equals(text)) {
-                        String deleteUrl = getString(R.string.heroku_url) + "/api/posts/" + currentPost._id;
+                        String deleteUrl = getString(R.string.server_url) + "/api/posts/" + currentPost._id;
                         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, deleteUrl,
                                 new Response.Listener<String>() {
                                     @Override
@@ -130,7 +130,7 @@ public class PostActivity extends AppCompatActivity {
                 try{
                 for(Post currentPost : posts){
                     if(currentPost.title.equals(text)){
-                        String patchURL = getString(R.string.heroku_url) + "/api/posts/" + currentPost._id ;
+                        String patchURL = getString(R.string.server_url) + "/api/posts/" + currentPost._id ;
                         StringRequest patchRequest = new StringRequest(Request.Method.PATCH, patchURL,
                                 new Response.Listener<String>() {
                                     @Override
