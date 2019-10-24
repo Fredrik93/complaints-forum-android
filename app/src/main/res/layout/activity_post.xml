@@ -33,18 +33,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.947" />
 
-    <TextView
-        android:id="@+id/postTextView"
-        android:layout_width="341dp"
-        android:layout_height="349dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/textView_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <ScrollView
+        android:layout_width="360dp"
+        android:layout_height="469dp"
+        app:layout_constraintBottom_toTopOf="@+id/putPostButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.138">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/postTextView"
+                android:layout_width="366dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="@string/textView_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.233" />
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/putPostButton"
